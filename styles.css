@@ -1,0 +1,279 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Navbar */
+header {
+    background-color: #212121;
+    padding: 15px 20px;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 2px solid #444;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #ff4081;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+#hero {
+    background: linear-gradient(135deg, #6a1b9a 30%, #8e24aa 100%);
+    text-align: center;
+    padding: 100px 20px;
+    color: white;
+    border-radius: 0 0 60px 60px;
+    position: relative;
+    overflow: hidden;
+}
+
+#hero h1 {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.cta-btn {
+    background-color: #ff4081;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.4em;
+    border-radius: 30px;
+    display: inline-block;
+    transition: 0.3s;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.cta-btn:hover {
+    background-color: #e73370;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Sections */
+section {
+    padding: 80px 20px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 15px;
+    margin: 30px auto;
+    max-width: 1200px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Adding subtle gradient for even-numbered sections */
+section:nth-of-type(even) {
+    background: linear-gradient(135deg, #f9f9f9 30%, #e9ecef 100%);
+}
+
+/* Sections with border under headings */
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    font-weight: 700;
+    color: #333;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Resource Cards */
+.resource-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 280px;
+    text-align: center;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    border-top: 8px solid #007bff;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    margin-bottom: 20px;
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 0.5px;
+}
+
+.card a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.card a:hover {
+    color: #ff4081;
+    text-decoration: underline;
+}
+
+/* Scroll-to-Top Button */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 15px 20px;
+    font-size: 18px;
+    display: none;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#scrollToTopBtn:hover {
+    background-color: #e73370;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+    font-size: 1em;
+    margin-top: 40px;
+}
+
+footer a {
+    color: #ff4081;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #e73370;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    #hero h1 {
+        font-size: 2.5em;
+    }
+
+    .cta-btn {
+        font-size: 1.1em;
+        padding: 12px 28px;
+    }
+}
+
+/* Chat Section */
+.chat-container {
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+.messages {
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background-color: #fff;
+}
+
+#messageInput {
+    width: 80%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Emoji Picker */
+.emoji-picker {
+    position: relative;
+}
+
+.emoji-list {
+    display: none;
+    position: absolute;
+    bottom: 30px;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.emoji-list span {
+    cursor: pointer;
+}
