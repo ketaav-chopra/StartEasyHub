@@ -1,90 +1,87 @@
-// Smooth scroll for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    setupSmoothScrolling();
+    setupStickyNavbar();
+    setupScrollToTopButton();
+    setupChat();
+});
 
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+// =================== Smooth Scroll for Navigation ===================
+function setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
-});
-
-// Sticky Navbar on Scroll
-const navbar = document.querySelector('header');
-const sticky = navbar.offsetTop;
-
-window.onscroll = function() {
-    stickyNavbar();
-    toggleScrollToTopButton();
-};
-
-function stickyNavbar() {
-    if (window.pageYOffset > sticky) {
-        navbar.classList.add('sticky');
-    } else {
-        navbar.classList.remove('sticky');
-    }
 }
 
-// Scroll-to-Top Button
-const scrollToTopBtn = document.createElement("button");
-scrollToTopBtn.innerText = "↑ Top";
-scrollToTopBtn.id = "scrollToTopBtn";
-document.body.appendChild(scrollToTopBtn);
-
-// Show/hide Scroll-to-Top button based on scroll position
-function toggleScrollToTopButton() {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        scrollToTopBtn.style.display = "block";
-    } else {
-        scrollToTopBtn.style.display = "none";
-    }
-}
-
-// Scroll to top functionality
-scrollToTopBtn.addEventListener('click', function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Connect to Socket.io server
-const socket = io('https://3f4fd106-ea86-4c9b-84a9-fc6b393076d7-00-246qv4fovgim2.janeway.replit.dev/');
-
-// Receive messages from the server
-socket.on('chat message', function(msg) {
-    displayMessage(msg);
-});
-
-// Send message
-function sendMessage(event) {
-    if (event && event.key !== 'Enter') return; // Allow sending by pressing 'Enter'
+// =================== Sticky Navbar ===================
+function setupStickyNavbar() {
+    const navbar = document.querySelector('header');
+    const sticky = navbar.offsetTop;
     
-    const messageInput = document.getElementById('messageInput');
-    const message = messageInput.value.trim();
-    
-    if (message) {
-        socket.emit('chat message', message);
-        messageInput.value = ''; // Clear input after sending
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(() => {
+            if (window.pageYOffset > sticky) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
+        });
+    });
+}
+
+// =================== Scroll-to-Top Button ===================
+function setupScrollToTopButton() {
+    let btn = document.getElementById("scrollToTopBtn");
+
+    if (!btn) {
+        btn = document.createElement("button");
+        btn.innerText = "↑ Top";
+        btn.id = "scrollToTopBtn";
+        btn.style.display = "none";
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        document.body.appendChild(btn);
     }
+
+    window.addEventListener('scroll', () => {
+        btn.style.display = window.scrollY > 200 ? "block" : "none";
+    });
 }
 
-// Display message in the chat
-function displayMessage(msg) {
-    const messages = document.getElementById('messages');
-    const messageElement = document.createElement('div');
-    messageElement.textContent = msg;
-    messages.appendChild(messageElement);
-    messages.scrollTop = messages.scrollHeight; // Scroll to the bottom
-}
-
-// Emoji picker (optional)
-function toggleEmojiPicker() {
-    const emojiList = document.getElementById('emoji-list');
-    emojiList.style.display = emojiList.style.display === 'block' ? 'none' : 'block';
-}
-
-// Add emoji to input
-function addEmoji(emoji) {
+// =================== Chat Application ===================
+function setupChat() {
+    const socket = io(); // Assuming you're running a local or Glitch server
     const messageInput = document.getElementById('messageInput');
-    messageInput.value += emoji;
-    toggleEmojiPicker(); // Hide emoji list after selection
+    const messagesContainer = document.getElementById('messages');
+    const sendButton = document.getElementById('sendButton');
+
+    if (!messageInput || !messagesContainer || !sendButton) return;
+
+    const sendMessage = () => {
+        const message = messageInput.value.trim();
+        if (message) {
+            socket.emit('chat message', message);
+            messageInput.value = ''; // Clear input after sending
+        }
+    };
+
+    // Event Listeners
+    messageInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') sendMessage();
+    });
+    sendButton.addEventListener('click', sendMessage);
+
+    // Receive messages
+    socket.on('chat message', (msg) => {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = msg;
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    });
 }
