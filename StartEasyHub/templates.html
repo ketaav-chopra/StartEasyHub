@@ -5,6 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Templates | StartEasyHub</title>
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=EUR"></script>
+    <style>
+        .contract-templates {
+            width: 300px;
+            margin: auto;
+        }
+
+        .contract-item {
+            padding: 10px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            position: relative;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .contract-item:hover {
+            width: 350px; /* Expand sideways on hover */
+        }
+
+        .buy-options {
+            display: none;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .contract-item:hover .buy-options {
+            display: block; /* Show Buy Now button when hovering */
+        }
+    </style>
 </head>
 <body>
 
@@ -36,7 +70,17 @@
             </div>
             <div class="card">
                 <h3>Contract Templates</h3>
-                <a href="templates/contracts/nda-template.docx" download>Download</a>
+                <div class="contract-templates">
+                    <div class="contract-item" onmouseover="showOptions('nda-options')" onmouseout="hideOptions('nda-options')">
+                        NDA Agreement
+                        <div class="buy-options" id="nda-options">
+                            <button class="buy-now" onclick="togglePayPal('paypal-button-nda')">Buy Now</button>
+                            <div class="paypal-button-container" id="paypal-button-nda"></div>
+                        </div>
+                    </div>
+                    <div class="contract-item">Partnership Agreement</div>
+                    <div class="contract-item">Employment Contract</div>
+                </div>
             </div>
         </div>
     </section>
@@ -46,6 +90,35 @@
         <p>&copy; 2025 StartEasyHub. All rights reserved.</p>
     </footer>
 
-    <script src="js/scripts.js"></script>
+    <script>
+        function showOptions(id) {
+            document.getElementById(id).style.display = "block";
+        }
+
+        function hideOptions(id) {
+            document.getElementById(id).style.display = "none";
+        }
+
+        function togglePayPal(id) {
+            document.getElementById(id).style.display = "block";
+
+            paypal.Buttons({
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: { value: '9.99' }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Payment completed by ' + details.payer.name.given_name);
+                        window.location.href = "thank-you.html";
+                    });
+                }
+            }).render('#' + id);
+        }
+    </script>
+
 </body>
 </html>

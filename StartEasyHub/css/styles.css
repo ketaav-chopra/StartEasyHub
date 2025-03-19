@@ -366,3 +366,36 @@ button:hover {
         transform: translateY(0);
     }
 }
+
+/* Contract Templates */
+.contract-templates {
+    width: 300px;
+    margin: auto;
+}
+
+.contract-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    transition: width 0.3s ease-in-out;
+}
+
+.contract-item:hover {
+    width: 350px;
+}
+
+.buy-options {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.contract-item:hover .buy-options {
+    display: block;
+}
