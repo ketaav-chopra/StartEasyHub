@@ -46,18 +46,6 @@
         <p>If StartEasyHub has helped you, please consider donating to support the site!</p>
         <div id="donate-button-container">
             <div id="donate-button"></div>
-            <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-            <script>
-                PayPal.Donation.Button({
-                    env: 'production',  // Can be 'sandbox' for testing and 'production' for live
-                    hosted_button_id: 'DZE5BQ38EAEXC',  // Your Hosted Button ID
-                    image: {
-                        src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
-                        alt: 'Donate with PayPal button',
-                        title: 'PayPal - The safer, easier way to pay online!',
-                    }
-                }).render('#donate-button');
-            </script>
         </div>
     </section>
 
@@ -66,6 +54,26 @@
         <p>&copy; 2025 StartEasyHub. All rights reserved.</p>
     </footer>
 
+    <!-- External Scripts -->
     <script src="js/scripts.js"></script>
+
+    <!-- PayPal SDK -->
+    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+
+    <!-- PayPal Button Script -->
+    <script>
+        window.onload = function() {
+            PayPal.Donation.Button({
+                env: 'production',  // Can be 'sandbox' for testing and 'production' for live
+                hosted_button_id: 'DZE5BQ38EAEXC',  // Your Hosted Button ID
+                image: {
+                    src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
+                    alt: 'Donate with PayPal button',
+                    title: 'PayPal - The safer, easier way to pay online!',
+                }
+            }).render('#donate-button');
+        };
+    </script>
+
 </body>
 </html>

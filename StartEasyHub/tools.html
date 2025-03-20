@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools & Services | StartEasyHub</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .card {
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .resource-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,14 +56,17 @@
         <div class="resource-cards">
             <div class="card">
                 <h3>Domain Registration</h3>
+                <p>Find the perfect domain name to represent your brand.</p>
                 <a href="#">Find Your Domain</a>
             </div>
             <div class="card">
                 <h3>Website Hosting</h3>
+                <p>Reliable hosting options to get your website online.</p>
                 <a href="#">Find Hosting</a>
             </div>
             <div class="card">
                 <h3>Design Tools</h3>
+                <p>Create stunning visuals with easy-to-use design tools.</p>
                 <a href="#">Explore Tools</a>
             </div>
         </div>
