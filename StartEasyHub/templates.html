@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Templates | StartEasyHub</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- PayPal SDK for Buttons -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AegcHb2zYIvhLZ1myC-5cQrXKG7EfcOzHfqM1P_KeNnBZ_MxEgzdbjjLv1ix_CbWlzjdsf5mjiKV1yAX&currency=EUR"></script>
     <style>
         .contract-templates {
             width: 300px;
@@ -72,11 +70,10 @@
             <div class="card">
                 <h3>Contract Templates</h3>
                 <div class="contract-templates">
-                    <div class="contract-item" onmouseover="showOptions('nda-options')" onmouseout="hideOptions('nda-options')">
+                    <div class="contract-item">
                         NDA Agreement
-                        <div class="buy-options" id="nda-options">
-                            <button class="buy-now" onclick="togglePayPal('paypal-button-nda')">Buy Now</button>
-                            <div class="paypal-button-container" id="paypal-button-nda"></div>
+                        <div class="buy-options">
+                            <button class="buy-now">Buy Now</button>
                         </div>
                     </div>
                     <div class="contract-item">Partnership Agreement</div>
@@ -91,37 +88,8 @@
         <p>&copy; 2025 StartEasyHub. All rights reserved.</p>
     </footer>
 
-    <script>
-        function showOptions(id) {
-            document.getElementById(id).style.display = "block";
-        }
-
-        function hideOptions(id) {
-            document.getElementById(id).style.display = "none";
-        }
-
-        function togglePayPal(id) {
-            // Show PayPal button container
-            const paypalButtonContainer = document.getElementById(id);
-            if (!paypalButtonContainer.querySelector('.paypal-button')) {
-                paypal.Buttons({
-                    createOrder: function(data, actions) {
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: { value: '9.99' } // Price for the template
-                            }]
-                        });
-                    },
-                    onApprove: function(data, actions) {
-                        return actions.order.capture().then(function(details) {
-                            alert('Payment completed by ' + details.payer.name.given_name);
-                            window.location.href = "thank-you.html"; // Redirect after successful payment
-                        });
-                    }
-                }).render('#' + id);
-            }
-        }
-    </script>
+    <!-- PayPal Button (iframe) at the Bottom-Right -->
+    <iframe src="paypal-button.html" style="position: fixed; bottom: 0; right: 0; width: 250px; height: 100px; border: none;"></iframe>
 
 </body>
 </html>

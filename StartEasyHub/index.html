@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StartEasyHub.com</title>
     <link rel="stylesheet" href="css/styles.css">
-    <!-- PayPal SDK for Buttons -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AegcHb2zYIvhLZ1myC-5cQrXKG7EfcOzHfqM1P_KeNnBZ_MxEgzdbjjLv1ix_CbWlzjdsf5mjiKV1yAX&currency=EUR"></script>
 </head>
 <body>
 
@@ -29,48 +27,13 @@
         <a href="guides.html" class="cta-btn">Start Your Journey</a>
     </section>
 
-    <!-- PayPal Donation Button Section -->
-    <section id="donate-section">
-        <h2>Support Us</h2>
-        <p>If StartEasyHub has helped you, please consider donating to support the site!</p>
-        <!-- PayPal Button Container -->
-        <div id="paypal-button-container"></div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer with PayPal Button -->
     <footer>
         <p>&copy; 2025 StartEasyHub. All rights reserved.</p>
+
+        <!-- PayPal Button at the Bottom-Right -->
+        <iframe src="paypal-button.html" style="position: fixed; bottom: 0; right: 0; width: 250px; height: 100px; border: none;"></iframe>
     </footer>
-
-    <script src="js/scripts.js"></script>
-
-    <!-- PayPal Button Script -->
-    <script>
-        window.onload = function() {
-            paypal.Buttons({
-                style: {
-                    shape: 'pill',
-                    color: 'blue',
-                    layout: 'vertical',
-                    label: 'donate'
-                },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: '10.00' // Set a fixed donation amount here
-                            }
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        alert('Donation successful! Thank you for your support, ' + details.payer.name.given_name);
-                    });
-                }
-            }).render('#paypal-button-container');
-        };
-    </script>
 
 </body>
 </html>

@@ -40,14 +40,8 @@
         </div>
     </section>
 
-    <!-- PayPal Donation Button Section -->
-    <section id="donate-section">
-        <h2>Support Us</h2>
-        <p>If StartEasyHub has helped you, please consider donating to support the site!</p>
-        <div id="donate-button-container">
-            <div id="donate-button"></div>
-        </div>
-    </section>
+    <!-- PayPal Button at the Bottom-Right -->
+    <iframe src="paypal-button.html" style="position: fixed; bottom: 0; right: 0; width: 250px; height: 100px; border: none;"></iframe>
 
     <!-- Footer -->
     <footer>
@@ -56,44 +50,6 @@
 
     <!-- External Scripts -->
     <script src="js/scripts.js"></script>
-
-    <!-- PayPal SDK -->
-    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-
-    <!-- PayPal Button Script -->
-    <script>
-        window.onload = function() {
-            PayPal.Donation.Button({
-                env: 'production',  // Can be 'sandbox' for testing and 'production' for live
-                hosted_button_id: 'DZE5BQ38EAEXC',  // Your Hosted Button ID
-                image: {
-                    src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',
-                    alt: 'Donate with PayPal button',
-                    title: 'PayPal - The safer, easier way to pay online!',
-                }
-            }).render('#donate-button');
-        };
-    </script>
-      <div id="donate-button-container">
-        <div id="donate-button"></div>
-    </div>
-    
-    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-    
-    <script>
-        window.onload = function() {
-            // Ensure the PayPal donation button is properly rendered
-            PayPal.Donation.Button({
-                env: 'production',  // Use 'sandbox' for testing and 'production' for live
-                hosted_button_id: '5RBBGCTECL53Y',  // Your hosted button ID from PayPal
-                image: {
-                    src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',  // PayPal donation button image
-                    alt: 'Donate with PayPal button',
-                    title: 'PayPal - The safer, easier way to pay online!',
-                }
-            }).render('#donate-button');  // This will render the button inside the element with id "donate-button"
-        };
-    </script>
 
 </body>
 </html>
