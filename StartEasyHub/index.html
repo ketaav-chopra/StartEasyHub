@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StartEasyHub.com</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- PayPal SDK for Buttons -->
     <script src="https://www.paypal.com/sdk/js?client-id=AegcHb2zYIvhLZ1myC-5cQrXKG7EfcOzHfqM1P_KeNnBZ_MxEgzdbjjLv1ix_CbWlzjdsf5mjiKV1yAX&currency=EUR"></script>
 </head>
 <body>
@@ -32,6 +33,7 @@
     <section id="donate-section">
         <h2>Support Us</h2>
         <p>If StartEasyHub has helped you, please consider donating to support the site!</p>
+        <!-- PayPal Button Container -->
         <div id="paypal-button-container"></div>
     </section>
 
@@ -69,28 +71,6 @@
             }).render('#paypal-button-container');
         };
     </script>
-    
-    <div id="donate-button-container">
-        <div id="donate-button"></div>
-    </div>
-    
-    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-    
-    <script>
-        window.onload = function() {
-            // Ensure the PayPal donation button is properly rendered
-            PayPal.Donation.Button({
-                env: 'production',  // Use 'sandbox' for testing and 'production' for live
-                hosted_button_id: '5RBBGCTECL53Y',  // Your hosted button ID from PayPal
-                image: {
-                    src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif',  // PayPal donation button image
-                    alt: 'Donate with PayPal button',
-                    title: 'PayPal - The safer, easier way to pay online!',
-                }
-            }).render('#donate-button');  // This will render the button inside the element with id "donate-button"
-        };
-    </script>
-    
 
 </body>
 </html>
