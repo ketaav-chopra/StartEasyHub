@@ -23,12 +23,10 @@ function setupSmoothScrolling() {
 function setupStickyNavbar() {
     const navbar = document.querySelector('header');
     if (!navbar) return;
-    
-    const sticky = navbar.offsetTop;
-    
+
     window.addEventListener('scroll', () => {
         requestAnimationFrame(() => {
-            if (window.pageYOffset > sticky) {
+            if (window.scrollY > navbar.offsetTop) {
                 navbar.classList.add('sticky');
             } else {
                 navbar.classList.remove('sticky');
@@ -44,11 +42,13 @@ function setupScrollToTopButton() {
         btn = document.createElement("button");
         btn.innerText = "↑ Top";
         btn.id = "scrollToTopBtn";
-        btn.style.display = "none";
-        btn.style.position = "fixed";
-        btn.style.bottom = "20px";
-        btn.style.right = "20px";
-        btn.style.zIndex = "1000";
+        btn.style.cssText = `
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        `;
         btn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
@@ -62,8 +62,11 @@ function setupScrollToTopButton() {
 
 // =================== Chat Application ===================
 function setupChat() {
-    if (typeof io === 'undefined') return;
-    
+    if (typeof io === 'undefined') {
+        console.warn("Socket.IO not loaded.");
+        return;
+    }
+
     const socket = io();
     const messageInput = document.getElementById('messageInput');
     const messagesContainer = document.getElementById('messages');
@@ -71,13 +74,13 @@ function setupChat() {
 
     if (!messageInput || !messagesContainer || !sendButton) return;
 
-    const sendMessage = () => {
+    function sendMessage() {
         const message = messageInput.value.trim();
         if (message) {
             socket.emit('chat message', message);
             messageInput.value = ''; // Clear input after sending
         }
-    };
+    }
 
     messageInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter') sendMessage();
@@ -94,21 +97,22 @@ function setupChat() {
 
 // =================== PayPal Integration ===================
 function setupPayPal() {
-    if (typeof paypal === 'undefined') return;
-    
+    if (typeof paypal === 'undefined') {
+        console.warn("PayPal SDK not loaded.");
+        return;
+    }
+
     const paypalContainer = document.getElementById('paypal-button-container');
-    if (paypalContainer) {
+    if (paypalContainer && !paypalContainer.hasChildNodes()) {
         paypal.Buttons({
-            createOrder: function (data, actions) {
+            createOrder: (data, actions) => {
                 return actions.order.create({
-                    purchase_units: [{
-                        amount: { value: '5.00' } // Set donation amount
-                    }]
+                    purchase_units: [{ amount: { value: '5.00' } }] // Set donation amount
                 });
             },
-            onApprove: function (data, actions) {
-                return actions.order.capture().then(function (details) {
-                    alert("Thank you, " + details.payer.name.given_name + "! Your donation was successful.");
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(details => {
+                    alert(`Thank you, ${details.payer.name.given_name}! Your donation was successful.`);
                 });
             }
         }).render('#paypal-button-container');
@@ -118,23 +122,21 @@ function setupPayPal() {
 function togglePayPal(id) {
     const container = document.getElementById(id);
     if (!container) return;
-    
+
     container.style.display = "block";
-    if (!container.hasChildNodes()) {
+    if (!container.hasChildNodes() && typeof paypal !== 'undefined') {
         paypal.Buttons({
-            createOrder: function (data, actions) {
+            createOrder: (data, actions) => {
                 return actions.order.create({
-                    purchase_units: [{
-                        amount: { value: '9.99' }
-                    }]
+                    purchase_units: [{ amount: { value: '9.99' } }]
                 });
             },
-            onApprove: function (data, actions) {
-                return actions.order.capture().then(function (details) {
-                    alert('Payment completed by ' + details.payer.name.given_name);
+            onApprove: (data, actions) => {
+                return actions.order.capture().then(details => {
+                    alert(`Payment completed by ${details.payer.name.given_name}`);
                     window.location.href = "thank-you.html";
                 });
             }
-        }).render('#' + id);
+        }).render(`#${id}`);
     }
 }

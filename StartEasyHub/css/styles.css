@@ -361,53 +361,12 @@
         display: block;
     }
 
-    /* Custom PayPal Button */
-    .custom-paypal-button {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        display: inline-block;
-        background: #0070ba;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: none;
-        padding: 15px 40px;
-        border-radius: 50px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        transition: all 0.3s ease;
-        z-index: 1000;
-        font-family: 'Arial', sans-serif;
-        animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
-    }
-
-    .custom-paypal-button:hover {
-        background: #005a8c;
-        transform: translateY(-5px);
-    }
-
-    .custom-paypal-button::before {
-        content: "💳 Donate Now!";
-        position: absolute;
-        top: -20px;
-        left: 10px;
-        font-size: 14px;
-        opacity: 0.7;
-        color: #ffcc00;
-    }
-/* PayPal Button Style */
+    /* PayPal Button Styles */
 .custom-paypal-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    display: inline-block;
-    background: #0070ba;
+    background: linear-gradient(135deg, #00457C, #0070BA);
     color: white;
     font-size: 18px;
     font-weight: bold;
@@ -415,39 +374,30 @@
     padding: 15px 40px;
     border-radius: 50px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease-in-out;
     z-index: 1000;
     font-family: 'Arial', sans-serif;
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .custom-paypal-button:hover {
-    background: #005a8c;
+    background: linear-gradient(135deg, #003366, #005A8C);
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
-.custom-paypal-button::before {
-    content: "💳 Donate Now!";
-    position: absolute;
-    top: -20px;
-    left: 10px;
-    font-size: 14px;
-    opacity: 0.7;
-    color: #ffcc00;
+.custom-paypal-button img {
+    width: 24px;
+    height: auto;
 }
 
-.custom-paypal-button:focus {
-    outline: none;
+.custom-paypal-button span {
+    display: inline-block;
 }
 
-/* Optional: Add media query to adjust PayPal button on mobile screens */
+/* Mobile adjustments */
 @media (max-width: 768px) {
     .custom-paypal-button {
         bottom: 20px;
