@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupStickyNavbar();
     setupScrollToTopButton();
     setupChat();
-    setupPayPal();
 });
 
 // =================== Smooth Scroll for Navigation ===================
@@ -94,66 +93,3 @@ function setupChat() {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     });
 }
-
-// =================== PayPal Integration ===================
-function setupPayPal() {
-    if (typeof paypal === 'undefined') {
-        console.warn("PayPal SDK not loaded.");
-        return;
-    }
-
-    const paypalContainer = document.getElementById('paypal-button-container');
-    if (paypalContainer && !paypalContainer.hasChildNodes()) {
-        paypal.Buttons({
-            createOrder: (data, actions) => {
-                return actions.order.create({
-                    purchase_units: [{ amount: { value: '5.00' } }] // Set donation amount
-                });
-            },
-            onApprove: (data, actions) => {
-                return actions.order.capture().then(details => {
-                    alert(`Thank you, ${details.payer.name.given_name}! Your donation was successful.`);
-                });
-            }
-        }).render('#paypal-button-container');
-    }
-}
-
-function togglePayPal(id) {
-    const container = document.getElementById(id);
-    if (!container) return;
-
-    container.style.display = "block";
-    if (!container.hasChildNodes() && typeof paypal !== 'undefined') {
-        paypal.Buttons({
-            createOrder: (data, actions) => {
-                return actions.order.create({
-                    purchase_units: [{ amount: { value: '9.99' } }]
-                });
-            },
-            onApprove: (data, actions) => {
-                return actions.order.capture().then(details => {
-                    alert(`Payment completed by ${details.payer.name.given_name}`);
-                    window.location.href = "thank-you.html";
-                });
-            }
-        }).render(`#${id}`);
-    }
-}
-// Wait for the DOM to load before executing any script
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // Log to the console when the page is loaded
-    console.log('PayPal Button Script Loaded!');
-    
-    // Optional: Log when the user clicks the PayPal button (if needed for analytics)
-    const paypalButton = document.querySelector('input[name="submit"]');
-    
-    if (paypalButton) {
-        paypalButton.addEventListener('click', function(event) {
-            console.log('PayPal button clicked!');
-            // You can add additional analytics or tracking here if needed
-        });
-    }
-
-});
