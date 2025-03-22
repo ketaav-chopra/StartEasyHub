@@ -361,48 +361,39 @@
         display: block;
     }
 
-    /* PayPal Button Styles */
-.custom-paypal-button {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: linear-gradient(135deg, #00457C, #0070BA);
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 15px 40px;
-    border-radius: 50px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    transition: all 0.3s ease-in-out;
-    z-index: 1000;
-    font-family: 'Arial', sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  /* General Styles for the PayPal Button */
+.paypal-button-container {
+    text-align: center; /* Center the button on the page */
+    margin-top: 30px; /* Add some space above the button */
 }
 
-.custom-paypal-button:hover {
-    background: linear-gradient(135deg, #003366, #005A8C);
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.custom-paypal-button img {
-    width: 24px;
-    height: auto;
-}
-
-.custom-paypal-button span {
-    display: inline-block;
-}
-
-/* Mobile adjustments */
+/* Make the button responsive on smaller screens */
 @media (max-width: 768px) {
-    .custom-paypal-button {
-        bottom: 20px;
-        right: 20px;
-        font-size: 16px;
-        padding: 12px 30px;
+    .paypal-button-container input[type="image"] {
+        width: 100%; /* Make the button fill the width on smaller screens */
+        max-width: 300px; /* Set a max width */
     }
+}
+
+/* Optional Styling for Footer */
+footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #333;
+    color: white;
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+footer a {
+    color: #ff4081;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #e73370;
 }

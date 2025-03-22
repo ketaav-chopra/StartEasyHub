@@ -140,3 +140,20 @@ function togglePayPal(id) {
         }).render(`#${id}`);
     }
 }
+// Wait for the DOM to load before executing any script
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Log to the console when the page is loaded
+    console.log('PayPal Button Script Loaded!');
+    
+    // Optional: Log when the user clicks the PayPal button (if needed for analytics)
+    const paypalButton = document.querySelector('input[name="submit"]');
+    
+    if (paypalButton) {
+        paypalButton.addEventListener('click', function(event) {
+            console.log('PayPal button clicked!');
+            // You can add additional analytics or tracking here if needed
+        });
+    }
+
+});
