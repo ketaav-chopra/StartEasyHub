@@ -9,9 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
+                e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth' });
             }
         });
@@ -25,11 +25,7 @@ function setupStickyNavbar() {
 
     window.addEventListener('scroll', () => {
         requestAnimationFrame(() => {
-            if (window.scrollY > navbar.offsetTop) {
-                navbar.classList.add('sticky');
-            } else {
-                navbar.classList.remove('sticky');
-            }
+            navbar.classList.toggle('sticky', window.scrollY > navbar.offsetTop);
         });
     });
 }
@@ -39,14 +35,19 @@ function setupScrollToTopButton() {
     let btn = document.getElementById("scrollToTopBtn");
     if (!btn) {
         btn = document.createElement("button");
-        btn.innerText = "↑ Top";
         btn.id = "scrollToTopBtn";
+        btn.innerText = "↑ Top";
         btn.style.cssText = `
             display: none;
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 1000;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
         `;
         btn.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
