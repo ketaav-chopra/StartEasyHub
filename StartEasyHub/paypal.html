@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>PayPal Donation</title>
 </head>
 <body>
-    <div class="paypal-button-container">
-        <form action="https://www.paypal.com/donate" method="post" target="_top">
-            <input type="hidden" name="hosted_button_id" value="HXZFRQSA55YEN" />
-            <button type="submit">Donate with PayPal</button>
-        </form>
-    </div>
+    <h1>Support Our Cause</h1>
+    <p>Donate to help us continue our work. Your contribution is greatly appreciated!</p>
+
+    <!-- PayPal Donation Button Form -->
+    <form action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="HXZFRQSA55YEN" />
+        <input type="image" src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" 
+               border="0" name="submit" title="PayPal - The safer, easier way to pay online!" 
+               alt="Donate with PayPal button" />
+    </form>
 </body>
 </html>
