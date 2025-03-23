@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Templates | StartEasyHub</title>
-    <!-- Make sure the path to the CSS file is correct -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css"> <!-- Ensure CSS path is correct -->
     <style>
         .contract-templates {
             width: 300px;
@@ -37,6 +36,28 @@
 
         .contract-item:hover .buy-options {
             display: block; /* Show Buy Now button when hovering */
+        }
+
+        /* Styling for PayPal button to ensure it's visible */
+        .paypal-button-container {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 9999;
+        }
+
+        .paypal-button-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .paypal-button-container button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -84,18 +105,19 @@
         </div>
     </section>
 
+    <!-- PayPal Donate Button -->
+    <div class="paypal-button-container">
+        <a href="paypal.html" target="_blank">
+            <button>Donate with PayPal</button>
+        </a>
+    </div>
+
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 StartEasyHub. All rights reserved.</p>
-    
-        <div style="position: fixed; bottom: 10px; right: 10px; z-index: 9999;">
-            <a href="paypal.html" target="_blank">
-                <button style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; cursor: pointer;">Donate with PayPal</button>
-            </a>
-        </div>
     </footer>
 
-    <!-- Link to Chat-Specific JavaScript file -->
-    <script src="js/chat.js"></script>
+    <script src="js/scripts.js" defer></script> <!-- Ensure the JS path is correct -->
 
 </body>
 </html>

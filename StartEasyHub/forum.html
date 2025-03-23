@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum | StartEasyHub</title>
     <link rel="stylesheet" href="css/styles.css"> <!-- Ensure CSS path is correct -->
+    <style>
+        /* Dark mode styling */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+
+        header, footer {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Scroll to top button */
+        .scroll-top-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .scroll-top-btn.show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
@@ -29,6 +68,14 @@
         <div class="forum-threads">
             <p>Coming soon: Interactive discussion threads!</p>
         </div>
+
+        <!-- Thread Submission Form -->
+        <h3>Create a New Thread</h3>
+        <form id="thread-form">
+            <input type="text" id="thread-title" placeholder="Enter thread title" required>
+            <textarea id="thread-content" placeholder="Enter thread content" required></textarea>
+            <button type="submit">Create Thread</button>
+        </form>
     </section>
 
     <!-- Chat Section -->
@@ -45,21 +92,64 @@
         </div>
     </section>
 
+    <!-- Dark Mode Toggle -->
+    <button id="dark-mode-toggle" style="position: fixed; top: 10px; right: 10px;">
+        Toggle Dark Mode
+    </button>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top-btn" id="scroll-top-btn">↑</button>
+
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 StartEasyHub. All rights reserved.</p>
     
         <div style="position: fixed; bottom: 10px; right: 10px; z-index: 9999;">
             <a href="paypal.html" target="_blank">
-                <button style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; cursor: pointer;">
-                    Donate with PayPal
-                </button>
+                <button>Donate with PayPal</button>
             </a>
         </div>
     </footer>
 
-    <!-- Chat JavaScript -->
-    <script src="js/chat.js"></script> <!-- Ensure JS path is correct -->
+    <!-- External Scripts -->
+    <script src="js/scripts.js" defer></script> <!-- Ensure JS path is correct -->
+    <script>
+        // Dark Mode Toggle
+        const darkModeButton = document.getElementById('dark-mode-toggle');
+        darkModeButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Scroll to Top Button
+        const scrollTopButton = document.getElementById('scroll-top-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopButton.classList.add('show');
+            } else {
+                scrollTopButton.classList.remove('show');
+            }
+        });
+
+        scrollTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Forum Thread Submission
+        const threadForm = document.getElementById('thread-form');
+        threadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('thread-title').value;
+            const content = document.getElementById('thread-content').value;
+
+            if (title && content) {
+                alert('New thread created: ' + title); // Placeholder for submission logic
+                // In a real scenario, this would send data to a server/database
+            } else {
+                alert('Please fill in both fields!');
+            }
+        });
+    </script>
 
 </body>
 </html>
