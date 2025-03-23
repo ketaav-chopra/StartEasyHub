@@ -24,20 +24,6 @@
             width: 350px; /* Expand sideways on hover */
         }
 
-        .buy-options {
-            display: none;
-            position: absolute;
-            left: 100%;
-            top: 0;
-            background: #fff;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-
-        .contract-item:hover .buy-options {
-            display: block; /* Show Buy Now button when hovering */
-        }
-
         /* Styling for PayPal button to ensure it's visible */
         .paypal-button-container {
             position: fixed;
@@ -92,12 +78,7 @@
             <div class="card">
                 <h3>Contract Templates</h3>
                 <div class="contract-templates">
-                    <div class="contract-item">
-                        NDA Agreement
-                        <div class="buy-options">
-                            <button class="buy-now">Buy Now</button>
-                        </div>
-                    </div>
+                    <div class="contract-item">NDA Agreement</div>
                     <div class="contract-item">Partnership Agreement</div>
                     <div class="contract-item">Employment Contract</div>
                 </div>
