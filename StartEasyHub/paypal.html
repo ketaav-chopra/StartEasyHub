@@ -4,23 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PayPal Donation</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #007bff;
-        }
-        .donation-container {
-            margin-top: 20px;
-        }
-        .paypal-button-container {
-            margin-top: 20px;
-        }
-    </style>
-    <script src="script.js" defer></script> <!-- Added 'defer' to ensure the script loads after the HTML -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -28,7 +12,7 @@
     <p>Donate to help us continue our work. Your contribution is greatly appreciated!</p>
 
     <!-- PayPal Donation Button Form -->
-    <div class="donation-container">
+    <div class="paypal-button-container">
         <form action="https://www.paypal.com/donate" method="post" target="_top">
             <input type="hidden" name="hosted_button_id" value="HXZFRQSA55YEN" />
             <input type="image" src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" 
@@ -41,24 +25,7 @@
     <!-- Optional: Scroll to Top Button (if you'd like to add one) -->
     <button id="scrollToTopBtn" style="display:none;">↑ Top</button>
 
-    <script>
-        // Scroll to Top Button Functionality
-        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-
-        // Show or hide the button based on scroll position
-        window.addEventListener("scroll", function() {
-            if (window.scrollY > 200) {
-                scrollToTopBtn.style.display = "block";
-            } else {
-                scrollToTopBtn.style.display = "none";
-            }
-        });
-
-        // Scroll to top when button is clicked
-        scrollToTopBtn.addEventListener("click", function() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-    </script>
+    <script src="js/scripts.js" defer></script>
 
 </body>
 </html>

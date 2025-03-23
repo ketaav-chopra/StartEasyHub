@@ -100,109 +100,6 @@ header nav ul li a:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Sections */
-section {
-    padding: 100px 20px;
-    text-align: center;
-    background: #ffffff;
-    border-radius: 15px;
-    margin: 30px auto;
-    max-width: 1200px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-}
-
-/* Adding subtle gradient for even-numbered sections */
-section:nth-of-type(even) {
-    background: linear-gradient(135deg, #f9f9f9 30%, #e9ecef 100%);
-}
-
-/* Sections with border under headings */
-h2 {
-    font-size: 2.8em;
-    margin-bottom: 25px;
-    font-weight: 700;
-    color: #333;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #ddd;
-    animation: fadeIn 1s ease-out;
-}
-
-/* Resource Cards */
-.resource-cards {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.card {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    width: 280px;
-    text-align: center;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    overflow: hidden;
-    border-top: 8px solid #007bff;
-    animation: fadeInUp 1s ease-out;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-}
-
-.card h3 {
-    margin-bottom: 20px;
-    font-size: 1.6em;
-    font-weight: 600;
-    color: #333;
-    letter-spacing: 0.5px;
-}
-
-.card a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s;
-}
-
-.card a:hover {
-    color: #ff4081;
-    text-decoration: underline;
-}
-
-/* Scroll-to-Top Button */
-#scrollToTopBtn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #ff4081;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 15px 20px;
-    font-size: 18px;
-    display: none;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-#scrollToTopBtn:hover {
-    background-color: #e73370;
-    transform: scale(1.1);
-}
-
 /* Footer */
 footer {
     padding: 20px;
@@ -223,15 +120,29 @@ footer a:hover {
     color: #e73370;
 }
 
+/* PayPal Button Styling */
+.paypal-button-container {
+    position: fixed; /* Keeps it at the bottom right */
+    bottom: 20px;    /* Ensure it's above other elements */
+    right: 20px;     /* Keep it aligned to the right */
+    z-index: 1000;   /* Makes sure it stays on top */
+    max-width: 100%;  /* Prevents it from overflowing */
+    visibility: visible; /* Ensure it's not hidden */
+    display: block;   /* Ensure it's not display: none; */
+}
+
+.paypal-button-container input[type="image"],
+.paypal-button-container button {
+    display: block;
+    width: 100px;     /* Make it fit better */
+    height: auto;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     header nav ul {
         flex-direction: column;
         align-items: center;
-    }
-
-    .card {
-        width: 100%;
     }
 
     #hero h1 {
@@ -247,25 +158,4 @@ footer a:hover {
         bottom: 20px;
         right: 20px;
     }
-
-    .paypal-button-container {
-        bottom: 20px;
-        right: 20px;
-    }
-}
-
-/* PayPal Button Styling */
-.paypal-button-container {
-    position: fixed; /* Keeps it at the bottom right */
-    bottom: 10px;
-    right: 10px;
-    z-index: 1000; /* Ensures it stays on top */
-}
-
-/* Ensure PayPal button is visible */
-.paypal-button-container input[type="image"],
-.paypal-button-container button {
-    display: block; 
-    width: auto; 
-    max-width: 100%; 
 }
