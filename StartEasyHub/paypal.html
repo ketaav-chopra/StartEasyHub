@@ -6,12 +6,9 @@
     <title>Donate with PayPal</title>
     <link rel="stylesheet" href="css/styles.css"> <!-- Ensure styles are applied -->
 
-    <script>
-        window.onload = function () {
-            console.log("PayPal SDK Loaded?", typeof paypal !== "undefined");
-        };
-    </script>
-    
+    <!-- PayPal SDK Script -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AcDQB9frjBMZ--5SAISlYXCphK_My71MurJSqi1CY75bLb3r9DZCNBtL0A3NAGUlktfw_uqorNfMNEq1&components=buttons"></script>
+
 </head>
 <body>
 
@@ -26,8 +23,7 @@
     <div id="paypal-button-container"></div>
 
     <!-- PayPal SDK & Script -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AcDQB9frjBMZ--5SAISlYXCphK_My71MurJSqi1CY75bLb3r9DZCNBtL0A3NAGUlktfw_uqorNfMNEq1"></script>
-    <script src="js/paypal.js"></script>
+    <script src="js/paypal.js"></script> <!-- Ensure this is your customized JS file -->
 
 </body>
 </html>
