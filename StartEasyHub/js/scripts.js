@@ -37,23 +37,11 @@ function setupScrollToTopButton() {
         btn = document.createElement("button");
         btn.id = "scrollToTopBtn";
         btn.innerText = "↑ Top";
-        btn.style.cssText = `
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            padding: 10px;
-            background: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        `;
-        btn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+        btn.classList.add("scroll-to-top");
         document.body.appendChild(btn);
     }
+
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     window.addEventListener('scroll', () => {
         btn.style.display = window.scrollY > 200 ? "block" : "none";
