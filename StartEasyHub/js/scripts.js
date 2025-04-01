@@ -3,6 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     setupStickyNavbar();
     setupScrollToTopButton();
     setupChat();
+    setupTypewriterEffect();
+    setupDarkModeToggle();
+    setupDynamicBackgroundAnimation();
 });
 
 // =================== Smooth Scroll for Navigation ===================
@@ -25,7 +28,7 @@ function setupStickyNavbar() {
 
     window.addEventListener('scroll', () => {
         requestAnimationFrame(() => {
-            navbar.classList.toggle('sticky', window.scrollY > navbar.offsetTop);
+            navbar.classList.toggle('sticky', window.scrollY > 0);
         });
     });
 }
@@ -81,4 +84,113 @@ function setupChat() {
         messagesContainer.appendChild(messageElement);
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     });
+}
+
+// =================== Cool Feature 1: Typewriter Effect ===================
+function setupTypewriterEffect() {
+    const heroTitle = document.querySelector('#hero h1');
+    if (!heroTitle) return;
+
+    const text = heroTitle.textContent;
+    heroTitle.textContent = '';
+
+    let index = 0;
+    function typeWriter() {
+        if (index < text.length) {
+            heroTitle.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeWriter, 50); // Adjust typing speed here
+        }
+    }
+
+    typeWriter();
+}
+
+// =================== Cool Feature 2: Dark Mode Toggle ===================
+function setupDarkModeToggle() {
+    const toggleButton = document.createElement('button');
+    toggleButton.id = 'darkModeToggle';
+    toggleButton.innerText = '🌙'; // Moon icon for dark mode
+    toggleButton.style.position = 'fixed';
+    toggleButton.style.bottom = '80px';
+    toggleButton.style.right = '30px';
+    toggleButton.style.padding = '10px 15px';
+    toggleButton.style.borderRadius = '50%';
+    toggleButton.style.backgroundColor = '#ff4081';
+    toggleButton.style.color = '#fff';
+    toggleButton.style.cursor = 'pointer';
+    toggleButton.style.fontSize = '16px';
+    toggleButton.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+    toggleButton.style.zIndex = '1000';
+
+    document.body.appendChild(toggleButton);
+
+    let isDarkMode = false;
+    toggleButton.addEventListener('click', () => {
+        isDarkMode = !isDarkMode;
+        document.body.style.backgroundColor = isDarkMode ? '#121212' : '#f7f9fc';
+        document.body.style.color = isDarkMode ? '#fff' : '#333';
+        toggleButton.innerText = isDarkMode ? '☀️' : '🌙'; // Sun icon for light mode
+    });
+}
+
+// =================== Cool Feature 3: Dynamic Background Animation ===================
+function setupDynamicBackgroundAnimation() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'dynamicBackground';
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.zIndex = '-1';
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 50;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function createParticles() {
+        for (let i = 0; i < particleCount; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3 + 1,
+                speedX: Math.random() * 2 - 1,
+                speedY: Math.random() * 2 - 1,
+                color: `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.8)`
+            });
+        }
+    }
+
+    function drawParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(particle => {
+            ctx.beginPath();
+            ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+            ctx.fillStyle = particle.color;
+            ctx.fill();
+
+            particle.x += particle.speedX;
+            particle.y += particle.speedY;
+
+            if (particle.x > canvas.width || particle.x < 0) particle.speedX *= -1;
+            if (particle.y > canvas.height || particle.y < 0) particle.speedY *= -1;
+        });
+    }
+
+    function animate() {
+        drawParticles();
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    createParticles();
+    animate();
 }
