@@ -32,11 +32,14 @@
         <p>&copy; 2025 StartEasyHub. All rights reserved.</p>
     </footer>
 
-    <!-- Typewriter Effect Script -->
+    <!-- Scripts -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Typewriter Effect
+        document.addEventListener('DOMContentLoaded', () => {
             setupTypewriterEffect();
+            setupHeroGradientAnimation();
+            setupNavbarHoverEffects();
+            setupCTAButtonAnimation();
+            setupFooterFadeIn();
         });
 
         // =================== Typewriter Effect ===================
@@ -60,6 +63,68 @@
             }
 
             typeWriter(); // Start the typewriter effect
+        }
+
+        // =================== Hero Gradient Animation ===================
+        function setupHeroGradientAnimation() {
+            const heroSection = document.getElementById('hero');
+            if (!heroSection) return;
+
+            let angle = 0;
+            function animateGradient() {
+                angle = (angle + 1) % 360; // Increment angle for continuous rotation
+                heroSection.style.background = `linear-gradient(${angle}deg, #6a1b9a, #8e24aa, #ff4081)`;
+                requestAnimationFrame(animateGradient);
+            }
+
+            animateGradient();
+        }
+
+        // =================== Navbar Hover Effects ===================
+        function setupNavbarHoverEffects() {
+            const navLinks = document.querySelectorAll('header nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    link.style.transform = 'scale(1.1)';
+                    link.style.transition = 'transform 0.3s ease, color 0.3s ease';
+                    link.style.color = '#ff4081';
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    link.style.transform = 'scale(1)';
+                    link.style.color = '#fff';
+                });
+            });
+        }
+
+        // =================== CTA Button Animation ===================
+        function setupCTAButtonAnimation() {
+            const ctaButton = document.querySelector('.cta-btn');
+            if (!ctaButton) return;
+
+            ctaButton.addEventListener('mouseenter', () => {
+                ctaButton.style.boxShadow = '0 0 20px rgba(255, 64, 129, 0.8)';
+                ctaButton.style.transform = 'scale(1.05)';
+                ctaButton.style.transition = 'all 0.3s ease';
+            });
+
+            ctaButton.addEventListener('mouseleave', () => {
+                ctaButton.style.boxShadow = 'none';
+                ctaButton.style.transform = 'scale(1)';
+            });
+        }
+
+        // =================== Footer Fade-In Animation ===================
+        function setupFooterFadeIn() {
+            const footer = document.querySelector('footer');
+            if (!footer) return;
+
+            footer.style.opacity = '0';
+            footer.style.transition = 'opacity 1s ease';
+
+            setTimeout(() => {
+                footer.style.opacity = '1';
+            }, 500); // Delay the fade-in effect slightly
         }
     </script>
 
