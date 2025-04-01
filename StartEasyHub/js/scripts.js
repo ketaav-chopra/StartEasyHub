@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupStickyNavbar();
     setupScrollToTopButton();
     setupChat();
-    setupTypewriterEffect();
+    setupTypewriterEffect(); // Typewriter effect is now included here
     setupDarkModeToggle();
     setupDynamicBackgroundAnimation();
 });
@@ -89,21 +89,24 @@ function setupChat() {
 // =================== Cool Feature 1: Typewriter Effect ===================
 function setupTypewriterEffect() {
     const heroTitle = document.querySelector('#hero h1');
-    if (!heroTitle) return;
+    if (!heroTitle) {
+        console.warn("Hero title not found. Typewriter effect cannot be applied.");
+        return;
+    }
 
-    const text = heroTitle.textContent;
-    heroTitle.textContent = '';
+    const text = heroTitle.textContent.trim(); // Get the original text
+    heroTitle.textContent = ''; // Clear the text initially
 
     let index = 0;
     function typeWriter() {
         if (index < text.length) {
-            heroTitle.textContent += text.charAt(index);
+            heroTitle.textContent += text.charAt(index); // Add one character at a time
             index++;
-            setTimeout(typeWriter, 50); // Adjust typing speed here
+            setTimeout(typeWriter, 50); // Adjust typing speed here (lower = faster)
         }
     }
 
-    typeWriter();
+    typeWriter(); // Start the typewriter effect
 }
 
 // =================== Cool Feature 2: Dark Mode Toggle ===================
